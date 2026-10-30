@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#254f51" />
+    <title>Der Tag des Koalas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <section id="intro" class="intro-screen" aria-label="Vorspann">
+        <div class="intro-copy top-copy">EIN FRIEDLICHER MORGEN …</div>
+        <div class="intro-bedroom" aria-hidden="true">
+          <span class="moon"></span><span class="window-frame"></span><span class="stars">✦ · ✧</span>
+          <span class="intro-bed"></span><span class="sleeping-koala"><i></i><b></b></span>
+          <span class="zzz">Z z z</span><span class="noise">RUMMS!</span>
+        </div>
+        <div class="intro-copy bottom-copy" id="intro-caption">Koala schlummert gemütlich in ihrem Bett.</div>
+        <div class="intro-controls" aria-label="Vorspann steuern">
+          <button id="intro-previous" disabled>← Zurück</button>
+          <button id="intro-next">Weiter →</button>
+        </div>
+      </section>
+
+      <section id="game" class="game" hidden>
+        <header class="hud">
+          <div><p class="eyebrow">DER TAG DES KOALAS</p><h1 id="room-title">Schlafzimmer</h1></div>
+          <div class="progress-wrap"><button id="restart" aria-label="Spiel neu beginnen">↻ Neustart</button></div>
+        </header>
+
+        <section id="scene" class="scene bedroom" aria-label="Schlafzimmer-Szene">
+          <div class="room-art" aria-hidden="true">
+            <span class="wall-window"><i></i></span><span class="wall-picture">♥</span>
+            <span class="bed"><i></i><b></b></span><span class="koala"><i></i><b></b></span>
+            <span class="rug"></span><span class="kitchen-door bedroom-kitchen-door"></span><button id="bedroom-door" class="bedroom-door-hit" type="button" aria-label="Tür zur Küche öffnen"></button>
+            <span class="counter"><i></i><b></b></span><span class="fridge"></span><span class="oven"></span><span class="kitchen-cupboards"><i></i><b></b><em></em></span><button id="cupboard-door" class="cupboard-door-hit" type="button" aria-label="Rechte Schranktür öffnen"></button><span class="bunny-trail"><i></i><b></b><em></em></span><span class="kitchen-door"></span><button id="kitchen-bedroom-door" class="kitchen-bedroom-door-hit" type="button" aria-label="Tür zum Schlafzimmer öffnen"></button><span class="cupboard-inside"></span>
+            <span class="cellar-stairs"></span><span class="crates"></span>
+            <span class="porch"></span><span class="postboxes"><i></i><b></b><em></em></span>
+            <span class="mobile-kitchen"><span class="mobile-fridge"></span><span class="mobile-cupboards"></span><button id="mobile-cupboard-door" class="mobile-cupboard-door" type="button" aria-label="Rechte Schranktür öffnen"></button><span class="mobile-counter"></span><span class="mobile-oven"></span><span class="mobile-door"></span><span class="mobile-paws"><i></i><b></b><em></em></span></span>
+          </div>
+          <div id="hotspots" class="hotspots"></div>
+          <form id="cupboard-puzzle" class="cupboard-puzzle" hidden>
+            <label for="cupboard-code">Kiste verschlossen</label>
+            <div><input id="cupboard-code" type="text" autocomplete="off" autocapitalize="characters" placeholder="CODE" aria-describedby="code-feedback" /><button>Öffnen</button></div>
+            <p id="code-feedback" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="dialogue" aria-live="polite">
+          <span class="speaker">KOALA</span>
+          <p id="dialogue-text">„Hmm? Was war das für ein Lärm?“</p>
+          <button id="next-dialogue" hidden>Weiter</button>
+        </section>
+        <div class="story-logo" aria-hidden="true"><span>DER TAG DES</span><strong>KOALAS</strong></div>
+      </section>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

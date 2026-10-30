@@ -1,0 +1,20 @@
+:root { --ink:#17333a; --paper:#fff4d8; --coral:#ed795f; --gold:#f7bd56; --teal:#254f51; }
+* { box-sizing:border-box; }
+body { min-height:100vh; min-height:100dvh; margin:0; color:var(--ink); background:linear-gradient(#254f51 0 50%,#e98168 50%); font-family:monospace; }
+.finale { width:min(850px,calc(100% - 32px)); min-height:100vh; min-height:100dvh; margin:auto; padding:clamp(28px,6vw,64px) 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.eyebrow { margin:0 0 10px; color:#ffe19b; font-weight:700; letter-spacing:.12em; font-size:clamp(12px,2vw,16px); }
+h1 { margin:0; color:var(--paper); font-size:clamp(32px,7vw,64px); line-height:1; text-shadow:4px 4px 0 #a44d4e; }
+.lead { margin:16px 0 24px; color:var(--paper); font-size:clamp(17px,3vw,24px); }
+.flip-card { width:min(680px,100%); aspect-ratio:3 / 2; padding:0; cursor:pointer; border:0; background:transparent; perspective:1200px; }
+.flip-card-inner { position:relative; display:block; width:100%; height:100%; transition:transform .7s ease; transform-style:preserve-3d; }
+.flip-card.is-flipped .flip-card-inner { transform:rotateY(180deg); }
+.card-face { position:absolute; inset:0; display:grid; place-items:center; padding:0; overflow:hidden; background:var(--paper); border:12px solid var(--paper); box-shadow:9px 9px 0 #a44d4e; backface-visibility:hidden; }
+.card-back { transform:rotateY(180deg); }
+.card-face img { display:block; max-width:100%; width:100%; height:100%; border:0; object-fit:contain; background:#254f51; }
+.card-back img { width:auto; height:84%; max-width:84%; max-height:84%; object-fit:contain; background:transparent; transform:translateY(-5%); }
+.flip-card:focus-visible { outline:4px solid #ffe19b; outline-offset:8px; }
+.flip-hint { margin:16px 0 0; color:var(--paper); font-size:clamp(15px,2.5vw,20px); }
+.restart { margin-top:28px; padding:10px 15px; color:var(--ink); background:var(--gold); border:4px solid var(--ink); box-shadow:4px 4px 0 #a44d4e; font-weight:700; font-size:clamp(15px,2.5vw,19px); text-decoration:none; }
+.restart:hover,.restart:focus-visible { background:var(--paper); transform:translate(-2px,-2px); outline:none; }
+@media (max-height:680px) { .finale { padding-block:18px; }.lead { margin:9px 0 14px; }.card-face { padding:8px; }.flip-hint { margin-top:9px; }.restart { margin-top:15px; } }
+@media (prefers-reduced-motion:reduce) { *,*:before,*:after { scroll-behavior:auto; transition-duration:.01ms!important; } }

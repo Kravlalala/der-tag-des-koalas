@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#254f51" />
+    <meta name="description" content="Das Wiedersehen von Hase und Koala." />
+    <title>Das große Wiedersehen · Der Tag des Koalas</title>
+    <link rel="stylesheet" href="finale.css" />
+  </head>
+  <body>
+    <main class="finale" aria-labelledby="finale-title">
+      <p class="eyebrow">DER TAG DES KOALAS</p>
+      <h1 id="finale-title">Das große Wiedersehen!</h1>
+      <p class="lead">Endlich sind Hase und Koala wieder zusammen.</p>
+
+      <button id="flip-card" class="flip-card" type="button" aria-pressed="false" aria-describedby="flip-hint">
+        <span class="flip-card-inner">
+          <span class="card-face card-front">
+            <img src="../img/finale.gif" alt="Das Finale von Hase und Koala." />
+          </span>
+          <span class="card-face card-back">
+            <img src="../img/gift.gif" alt="Ein Geschenk für den finalen Preis." />
+          </span>
+        </span>
+      </button>
+      <p id="flip-hint" class="flip-hint">Klicke auf das Bild, um deinen finalen Preis zu entdecken.</p>
+
+      <a id="restart" class="restart" href="../">↻ Noch einmal spielen</a>
+    </main>
+    <script>
+      document.querySelector('#restart').addEventListener('click', () => {
+        localStorage.removeItem('koala-party-state');
+      });
+
+      const flipCard = document.querySelector('#flip-card');
+      const flipHint = document.querySelector('#flip-hint');
+      flipCard.addEventListener('click', () => {
+        if (flipCard.classList.contains('is-flipped')) {
+          window.location.assign('https://my.latticetraining.com/form/add/D95F5B6A-BC9C-4FA5-AA8E-3402621CF8DC');
+          return;
+        }
+
+        const isFlipped = flipCard.classList.toggle('is-flipped');
+        flipCard.setAttribute('aria-pressed', String(isFlipped));
+        flipHint.textContent = isFlipped
+          ? 'Klicke auf das Geschenk, um deinen finalen Preis zu öffnen.'
+          : 'Klicke auf das Bild, um deinen finalen Preis zu entdecken.';
+      });
+    </script>
+  </body>
+</html>

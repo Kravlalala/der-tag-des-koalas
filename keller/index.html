@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3d4146" />
+    <title>Der Tag des Koalas – Keller</title>
+    <style>
+      :root { --ink:#f9ecd0; --wall:#3d4146; --wood:#735047; --shelf:#a67356; --gold:#f5bd63; }
+      .scene .small-box-stack { left:20%; }
+      .scene .top-shelf-box { left:23%; right:auto; }.scene .top-tray { left:auto; right:22%; }
+      .scrap-shelf:before,.scrap-shelf:after { display:none; }.scrap-rag { position:absolute; left:11%; bottom:21px; width:68px; height:26px; border:4px solid #695653; border-radius:45% 38% 42% 30%; background:#a97b6d; box-shadow:inset 8px 4px #c49a84; transform:rotate(-12deg); }.scrap-cable { position:absolute; left:38%; bottom:15px; width:54px; height:40px; border:6px solid #394548; border-radius:50%; box-shadow:inset 0 0 0 6px #806d62; transform:rotate(15deg); }.scrap-cable:after { content:""; position:absolute; right:-25px; bottom:-4px; width:28px; border-top:5px solid #394548; transform:rotate(28deg); }.scrap-spoon { position:absolute; right:23%; bottom:22px; width:17px; height:58px; border:4px solid #7e8685; border-radius:12px 12px 5px 5px; background:#abb0aa; box-shadow:inset 3px 0 #d9d8ca; transform:rotate(36deg); }.scrap-spoon:before { content:""; position:absolute; left:-8px; top:-17px; width:25px; height:23px; border:4px solid #7e8685; border-radius:50%; background:#abb0aa; }.scrap-screw { position:absolute; right:9%; bottom:28px; width:12px; height:30px; border:3px solid #4b5557; border-radius:3px; background:#8e9794; transform:rotate(20deg); }.scrap-screw:before { content:""; position:absolute; left:-5px; top:-7px; width:16px; height:9px; border:3px solid #4b5557; border-radius:3px; background:#b4bbb4; }
+      .middle-crate { position:absolute; z-index:2; left:42%; bottom:calc(36% - 35px); width:58px; height:44px; padding:0; border:5px solid #3f5051; background:repeating-linear-gradient(90deg,#819a94 0 10px,#a8b9a8 10px 14px); box-shadow:inset 0 5px #d4dbbd,3px 3px #2b292d; cursor:pointer; }.middle-crate:after { content:""; position:absolute; left:7px; right:7px; top:17px; border-top:4px solid #4b6663; }.middle-tin { position:absolute; z-index:2; left:72%; bottom:calc(36% - 35px); width:64px; height:36px; padding:0; border:5px solid #4c4655; border-radius:4px; background:linear-gradient(90deg,#90758d 0 15%,#cfb4c1 15% 85%,#90758d 85%); box-shadow:inset 0 5px #e9d4dc,3px 3px #2b292d; cursor:pointer; }.middle-tin:after { content:"X"; position:absolute; left:50%; top:6px; color:#604c61; font:700 14px monospace; transform:translateX(-50%); }
+      .top-tray { position:absolute; z-index:2; left:23%; bottom:calc(69% - 80px); width:210px; height:28px; padding:0; border:5px solid #4a4141; border-radius:5px; background:linear-gradient(#8c7670,#b49b87 45%,#735f5a 46%); box-shadow:inset 0 5px #cbb6a0,3px 3px #2b292d; cursor:pointer; }.top-tray:after { content:""; position:absolute; left:14px; right:14px; top:8px; border-top:3px solid #5c4f4c; }
+      .scene .cardboard-box { width:74px; height:40px; border-width:4px; }.scene .cardboard-box:before { left:28px; width:12px; }.scene .cardboard-box:after { top:17px; border-width:3px; }.scene .cellar-box { left:calc(57% + 5px); bottom:calc(36% + 5px); width:64px; height:40px; border:3px solid #58433d; border-radius:2px; background:#a97a5f; box-shadow:2px 3px #2b292d; }.scene .cellar-box:after { display:none; }
+      @media (max-width:600px) { .scene .small-box-stack { left:13%; }.scene .cellar-box { left:calc(59% + 4px); bottom:calc(36% - 7px); width:57px; height:36px; } }
+      @media (max-width:600px) { .middle-crate { left:34%; width:52px; height:36px; transform:scale(.65); transform-origin:bottom left; }.middle-tin { left:76%; width:60px; height:34px; transform:scale(.65); transform-origin:bottom left; }.scene .top-shelf-box { left:18%; right:auto; }.scene .top-tray { left:auto; right:12%; width:200px; transform:scale(.64); transform-origin:bottom right; } }
+      * { box-sizing:border-box; }
+      body { margin:0; min-height:100dvh; display:grid; place-items:center; color:var(--ink); background:linear-gradient(#29363b,#1d272c); font-family:monospace; }
+      main { width:min(920px,100%); min-height:100dvh; padding:20px; display:grid; grid-template-rows:auto 1fr auto auto auto; gap:0; }
+      header { margin-bottom:16px; }
+      header { display:flex; justify-content:space-between; align-items:center; } h1 { margin:0; font-size:clamp(20px,4vw,34px); } .eyebrow { margin:0 0 7px; font-size:12px; color:#f5bd63; letter-spacing:.08em; }
+      .scene { position:relative; min-height:360px; overflow:hidden; border:7px solid #171f23; background:linear-gradient(90deg,#4b5557,#5a6465 50%,#444d50); box-shadow:7px 7px 0 #12191c; }
+      .scene:before { content:""; position:absolute; z-index:4; inset:0; background:#071014; opacity:.98; transition:opacity .35s ease; }.scene.lit:before { opacity:0; pointer-events:none; }
+      .shelves { position:absolute; z-index:1; left:14%; width:72%; top:116px; bottom:0; border:8px solid #3c3436; background:linear-gradient(to bottom,transparent 0 31%,#7c5449 31% 36%,transparent 36% 64%,#7c5449 64% 69%,transparent 69%); box-shadow:inset 7px 0 #62504b,inset -7px 0 #62504b; }
+      .travel-bag { position:absolute; z-index:2; left:62%; bottom:18px; width:142px; height:66px; border:7px solid #352d31; border-radius:12px 12px 7px 7px; background:linear-gradient(#aeb4b4 0 46%,#697174 46% 54%,#aeb4b4 54%); box-shadow:inset 0 7px #d9dede,5px 5px #2b292d; }.travel-bag:before { content:""; position:absolute; left:43px; top:-25px; width:42px; height:24px; border:7px solid #352d31; border-bottom:0; border-radius:10px 10px 0 0; }.travel-bag:after { content:""; position:absolute; left:14px; right:14px; top:26px; border-top:4px solid #e5e9e7; box-shadow:0 12px #555f62; }
+      .pillow { position:absolute; z-index:2; left:24%; bottom:14px; width:142px; height:84px; filter:drop-shadow(4px 4px #342f32); }.pillow .body { fill:#e7edf2; stroke:#5c7189; stroke-width:5; stroke-linejoin:round; }.pillow .shade { fill:#c8d4df; opacity:.75; }.pillow .end { fill:#d7e1e9; stroke:#5c7189; stroke-width:4; stroke-linejoin:round; }.pillow .stitch { fill:none; stroke:#6c8198; stroke-width:3; stroke-linecap:round; }
+      .cellar-box { position:absolute; z-index:2; left:38%; bottom:calc(36% - 35px); width:102px; height:58px; padding:0; border:6px solid #352d31; border-radius:5px; background:linear-gradient(#b97a4f 0 45%,#6e403b 45% 55%,#b97a4f 55%); box-shadow:inset 0 7px #e6a46e,4px 4px #2b292d; cursor:pointer; }.cellar-box:after { content:"✦"; position:absolute; left:50%; top:12px; width:14px; height:14px; color:#ffe49a; font:700 14px monospace; transform:translateX(-50%); }
+      .cardboard-box { position:absolute; z-index:2; left:57%; bottom:calc(36% - 35px); width:84px; height:54px; border:6px solid #5c4238; background:#c8955d; box-shadow:inset 0 7px #e3b778,4px 4px #2b292d; }.cardboard-box:before { content:""; position:absolute; left:33px; top:0; width:14px; height:100%; background:#e9c783; border-left:3px solid #8c6548; border-right:3px solid #8c6548; }.cardboard-box:after { content:""; position:absolute; left:0; right:0; top:23px; border-top:5px solid #754f3e; }
+      .small-box-stack { position:absolute; z-index:2; left:18%; bottom:calc(36% - 35px); width:120px; height:86px; }.small-box-stack i,.small-box-stack b,.small-box-stack em { position:absolute; display:block; border:5px solid #5c4238; background:#d1a36b; box-shadow:inset 0 5px #ebc28a,3px 3px #2b292d; }.small-box-stack i { left:0; bottom:0; width:62px; height:44px; }.small-box-stack b { left:61px; bottom:0; width:59px; height:44px; }.small-box-stack em { left:28px; bottom:42px; width:64px; height:40px; background:#bd8658; }
+      .top-shelf-box { position:absolute; z-index:2; right:22%; bottom:calc(69% - 80px); width:78px; height:48px; border:6px solid #40474a; background:linear-gradient(#aab1b2 0 46%,#656e72 46% 54%,#aab1b2 54%); box-shadow:inset 0 6px #d6dcda,4px 4px #2b292d; }.top-shelf-box:before { content:""; position:absolute; left:0; right:0; top:20px; border-top:4px solid #50595c; }
+      .scrap-target { padding:0; cursor:pointer; }.small-box-stack.scrap-target { border:0; background:transparent; }
+      .box-closeup { display:none; position:absolute; z-index:7; inset:0; padding:18px; background:linear-gradient(#4a5557,#29373a); }.box-closeup-open .box-closeup { display:block; }.box-closeup-open .lamp,.box-closeup-open .shelves,.box-closeup-open .pillow,.box-closeup-open .travel-bag,.box-closeup-open .cellar-box { display:none; }.closeup-back { position:absolute; left:14px; top:14px; padding:6px 9px; color:#f9ecd0; background:#26353a; border:3px solid #f9ecd0; font:700 14px monospace; }.box-large { position:absolute; left:50%; top:50%; width:220px; height:122px; border:10px solid #352d31; border-radius:8px; background:linear-gradient(#b97a4f 0 45%,#6e403b 45% 55%,#b97a4f 55%); box-shadow:inset 0 15px #e6a46e,7px 7px #20282b; transform:translate(-50%,-58%); }.box-large:after { content:"✦"; position:absolute; left:50%; top:34px; width:28px; height:28px; padding-top:1px; color:#ffe49a; background:#463033; border:5px solid #201e20; font:700 20px monospace; text-align:center; transform:translateX(-50%); }.box-code { position:absolute; z-index:2; left:50%; bottom:24px; width:min(390px,88%); padding:9px; color:#fff4d8; background:#23383e; border:4px solid #fff4d8; font:14px monospace; text-align:center; transform:translateX(-50%); }.box-code input { width:120px; padding:6px; border:3px solid #171f23; font:700 16px monospace; text-transform:uppercase; }.box-code button { margin-left:5px; padding:6px 9px; color:#282123; background:#f5bd63; border:3px solid #171f23; font:700 14px monospace; }.box-code p { min-height:16px; margin:5px 0 0; color:#ffd68a; }.box-photo { display:none; position:absolute; left:50%; top:50%; width:min(480px,82%); max-height:72%; border:7px solid #f9ecd0; box-shadow:7px 7px #20282b; object-fit:contain; transform:translate(-50%,-50%); }.box-unlocked .box-large,.box-unlocked:after { display:none; }.box-unlocked .box-code { display:none; }.box-unlocked .box-photo { display:block; }
+      .scrap-closeup { display:none; position:absolute; z-index:7; inset:0; background:linear-gradient(#4a5557,#29373a); }.scrap-closeup-open .scrap-closeup { display:block; }.scrap-shelf { position:absolute; left:13%; right:13%; top:30%; height:128px; border:9px solid #513d39; background:#806050; box-shadow:inset 0 48px #b47b57; }.scrap-shelf:before { content:""; position:absolute; left:16%; top:28px; width:45px; height:18px; background:#878f91; border:5px solid #3a4548; box-shadow:70px 24px #985d48,145px -7px #9fa7a7,215px 22px #5d6769; transform:rotate(-8deg); }.scrap-shelf:after { content:"✦  ⚙  ✦"; position:absolute; right:12%; bottom:18px; color:#394448; font:700 28px monospace; letter-spacing:9px; }
+      .lamp { position:absolute; z-index:2; top:0; left:50%; width:5px; height:74px; background:#2a2528; transform:translateX(-50%); }.lamp:after { content:""; position:absolute; left:50%; bottom:-20px; width:64px; height:30px; border-radius:50% 50% 30% 30%; background:#f5bd63; border:5px solid #423633; box-shadow:0 0 40px 15px #f5bd6355; transform:translateX(-50%); }
+      .dialogue { padding:14px 18px; border:5px solid var(--ink); background:#26353a; box-shadow:6px 6px 0 #151f23; }.dialogue p { margin:5px 0 0; font-size:clamp(18px,3vw,25px); }.speaker { font-size:12px; color:var(--gold); letter-spacing:.08em; }
+      .light-switch { position:relative; justify-self:center; width:98px; height:132px; margin:4px 0; padding:0; color:#282123; background:#ddd4c5; border:5px solid #282123; border-radius:13px 15px 10px 12px; box-shadow:6px 5px 0 #62524a,inset 3px 3px #f5eddd; font:900 18px monospace; transform:scale(.84); }.light-switch:before { content:""; position:absolute; left:50%; top:35px; width:34px; height:48px; border:3px solid #625851; border-radius:7px; background:linear-gradient(90deg,#8e8780,#c9c1b5 50%,#817a73); box-shadow:inset 2px 2px #706962; transform:translateX(-50%); }.light-switch:focus-visible { outline:3px solid #f5bd63; outline-offset:4px; }.switch-word { position:absolute; z-index:2; left:50%; transform:translateX(-50%); letter-spacing:1px; }.switch-word.off { top:11px; }.switch-word.on { bottom:10px; }.switch-lever { position:absolute; z-index:2; left:50%; top:39px; width:30px; height:21px; border:3px solid #282123; border-radius:5px; background:linear-gradient(#f3ebdc,#a79f94); box-shadow:2px 3px 0 #625851; transform:translateX(-50%); transition:transform .16s ease,background .16s ease; }.switch-lever:after { content:""; position:absolute; left:5px; right:5px; top:6px; border-top:2px solid #675f59; }.light-switch[aria-pressed="true"] .switch-lever { background:linear-gradient(#ffe59c,#bf8c37); transform:translate(-50%,20px); }.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+      .logo { margin-top:24px; text-align:center; color:#a76a59; font-weight:900; line-height:.9; text-shadow:1px 1px #f3c177,-1px -1px #382f31; }.logo span { display:block; font-size:10px; }.logo strong { font-size:21px; }
+      @media (max-width:600px) { main { padding:10px; gap:10px; }.scene { min-height:0; aspect-ratio:1 / 1; }.shelves { left:8%; right:8%; width:auto; top:116px; bottom:0; height:auto; }.travel-bag { left:55%; bottom:14px; width:112px; height:54px; transform:scale(.86); transform-origin:bottom left; }.pillow { left:18%; bottom:16px; transform:scale(.78); transform-origin:bottom left; }.top-shelf-box { right:17%; bottom:calc(69% - 80px); transform:scale(.7); transform-origin:bottom right; }.small-box-stack { left:10%; bottom:calc(36% - 35px); transform:scale(.62); transform-origin:bottom left; }.cellar-box { left:35%; bottom:calc(36% - 35px); transform:scale(.78); transform-origin:bottom left; }.cardboard-box { left:59%; bottom:calc(36% - 35px); transform:scale(.7); transform-origin:bottom left; }.box-large { transform:translate(-50%,-66%) scale(.78); }.box-code { bottom:12px; font-size:12px; }.dialogue { padding:9px 11px; }.dialogue p { font-size:18px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header><div><h1>Keller</h1></div></header>
+      <section id="cellar-scene" class="scene" aria-label="Dunkler Keller"><span class="lamp"></span><span class="shelves"></span><button class="top-shelf-box scrap-target" type="button" aria-label="Graue Kiste ansehen"></button><button class="small-box-stack scrap-target" type="button" aria-label="Kistenstapel ansehen"><i></i><b></b><em></em></button><button id="cellar-box" class="cellar-box" type="button" aria-label="Kiste auf dem mittleren Regal ansehen"></button><button class="cardboard-box scrap-target" type="button" aria-label="Karton ansehen"></button><svg class="pillow" viewBox="0 0 160 95" aria-hidden="true"><path class="body" d="M20 24C11 15 4 20 5 32c1 8 6 11 13 7 3 18 9 31 18 39-6 8 0 16 7 10 3-10 10-11 20-10 30 0 57-9 78-19 10 6 17 2 11-5-4-4-8-6-13-5-4-22-11-36-22-46-5-6-10-4-12 7-30 2-58 4-82 15-2-4-3-7-3-7Z"/><path class="shade" d="M24 27c12 9 14 36 28 44 18 11 54 5 83-16-21 10-48 17-76 14-21-3-27-23-35-42Z"/><path class="end" d="M18 39c2 18 8 31 18 39l5-2c-10-14-15-29-17-48-5 1-7 5-6 11Z"/><path class="stitch" d="M23 38c6 2 10 5 14 9M25 49c6 2 10 5 15 9M29 60c5 2 9 5 14 9"/></svg><button class="travel-bag scrap-target" type="button" aria-label="Reisetasche ansehen"></button><section id="box-closeup" class="box-closeup" aria-label="Kisten-Nahaufnahme"><button id="box-back" class="closeup-back" type="button">← Keller</button><span class="box-large"></span><img class="box-photo" src="../bunny-mail.png" alt="Foto eines Hasenbriefs" /><form id="box-code" class="box-code"><label for="box-answer">Code eingeben</label><div><input id="box-answer" autocomplete="off" autocapitalize="characters" /><button>Öffnen</button></div><p id="box-feedback" aria-live="polite"></p></form></section><section id="scrap-closeup" class="scrap-closeup" aria-label="Altes Gerümpel"><button id="scrap-back" class="closeup-back" type="button">← Keller</button><span class="scrap-shelf"></span></section></section>
+      <button id="light-switch" class="light-switch" type="button" aria-pressed="false" aria-label="Kellerlicht einschalten"><span class="switch-word off" aria-hidden="true">OFF</span><span class="switch-lever" aria-hidden="true"></span><span class="switch-word on" aria-hidden="true">ON</span><span class="sr-only">Kellerlicht einschalten</span></button>
+      <section class="dialogue" aria-live="polite"><span class="speaker">KOALA</span><p id="cellar-dialogue">„Puh, ist das dunkel … wo ist der Lichtschalter?“</p></section>
+      <div class="logo" aria-hidden="true"><span>DER TAG DES</span><strong>KOALAS</strong></div>
+    </main>
+    <script>
+      const switchButton = document.querySelector('#light-switch');
+      const cellarScene = document.querySelector('#cellar-scene');
+      const cellarDialogue = document.querySelector('#cellar-dialogue');
+      const cellarBox = document.querySelector('#cellar-box');
+      const boxCloseup = document.querySelector('#box-closeup');
+      const boxBack = document.querySelector('#box-back');
+      const boxCode = document.querySelector('#box-code');
+      const boxAnswer = document.querySelector('#box-answer');
+      const boxFeedback = document.querySelector('#box-feedback');
+      document.querySelector('.box-photo').src = '../img/bunny-mail-autumn.png';
+      const middleCrate = document.createElement('button');
+      middleCrate.className = 'middle-crate scrap-target';
+      middleCrate.type = 'button';
+      middleCrate.setAttribute('aria-label', 'Grüne Kiste ansehen');
+      const middleTin = document.createElement('button');
+      middleTin.className = 'middle-tin scrap-target';
+      middleTin.type = 'button';
+      middleTin.setAttribute('aria-label', 'Kleine Dose ansehen');
+      const topTray = document.createElement('button');
+      topTray.className = 'top-tray scrap-target';
+      topTray.type = 'button';
+      topTray.setAttribute('aria-label', 'Tablett ansehen');
+      cellarScene.append(middleCrate, middleTin, topTray);
+      const scrapTargets = document.querySelectorAll('.scrap-target');
+      const scrapCloseup = document.querySelector('#scrap-closeup');
+      const scrapBack = document.querySelector('#scrap-back');
+      const scrapShelf = document.querySelector('.scrap-shelf');
+      ['scrap-rag', 'scrap-cable', 'scrap-spoon', 'scrap-screw'].forEach((className) => {
+        const object = document.createElement('span');
+        object.className = className;
+        object.setAttribute('aria-hidden', 'true');
+        scrapShelf.append(object);
+      });
+      switchButton.addEventListener('click', () => {
+        const isLit = cellarScene.classList.toggle('lit');
+        switchButton.setAttribute('aria-pressed', String(isLit));
+        switchButton.setAttribute('aria-label', isLit ? 'Kellerlicht ausschalten' : 'Kellerlicht einschalten');
+        cellarScene.setAttribute('aria-label', isLit ? 'Erleuchteter Keller' : 'Dunkler Keller');
+        cellarDialogue.textContent = isLit ? '„Ah! Jetzt sehe ich ein altes Regal in der Ecke.“' : '„Puh, ist das dunkel … wo ist der Lichtschalter?“';
+      });
+      cellarBox.addEventListener('click', () => { cellarScene.classList.add('box-closeup-open'); cellarDialogue.textContent='„Eine Kiste mit einem Zahlenschloss …“'; });
+      boxBack.addEventListener('click', () => cellarScene.classList.remove('box-closeup-open'));
+      boxCode.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (boxAnswer.value.trim().toLocaleUpperCase('de-DE') === 'SCARPA') {
+          boxCloseup.classList.add('box-unlocked');
+          cellarDialogue.textContent='„Aha! Jetzt weiß ich, wo ich den kleinen Schlingel finde!“';
+        } else {
+          boxFeedback.textContent='Das Schloss bleibt zu.';
+          boxAnswer.select();
+        }
+      });
+      scrapTargets.forEach((target) => target.addEventListener('click', () => {
+        cellarScene.classList.add('scrap-closeup-open');
+        cellarDialogue.textContent='„Nur ein paar alte Schrottteile. Hier ist nichts Interessantes.“';
+      }));
+      scrapBack.addEventListener('click', () => cellarScene.classList.remove('scrap-closeup-open'));
+    </script>
+  </body>
+</html>
